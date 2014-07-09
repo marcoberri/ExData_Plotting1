@@ -1,5 +1,3 @@
-
-
 download_file<-function(folder, file_result){
 
 	if(!file.exists(
@@ -20,6 +18,8 @@ download_file<-function(folder, file_result){
 	}
 }
 
+Sys.setlocale("LC_TIME", 'en_US.UTF-8')
+
 download_file("DS","/household_power_consumption.txt")
 
 fulldata<-read.table("./DS/household_power_consumption.txt", header=TRUE, sep = ";", dec=".", quote="\"",  na.strings = "?",colClasses=c("character","character","numeric","numeric","numeric","numeric","numeric","numeric","numeric"))
@@ -29,10 +29,10 @@ fulldata$Date = as.Date(fulldata$Date,format="%d/%m/%Y")
 
 fulldata_subset <- fulldata[ which(fulldata$Date=='2007-02-01' | fulldata$Date== '2007-02-02'),]
 
-png(filename = "./plot1.png", width = 480, height = 480, units = "px",bg="white")
+fulldata_subset$Day_of_Week <- strftime(fulldata_subset$Date,'%a')
 
-hist(fulldata_subset$Global_active_power,col="red",main="Global Active Power",xlab="Global Active Power (kilowatts)")
-
+png(filename = "./plot2.png", width = 480, height = 480, units = "px",bg="white")
+plot(fulldata_subset$DateTime,fulldata_subset$Global_active_power, ylab='Global Active Power (kilowatts)', xlab='', type='l')
 dev.off()
 
 
