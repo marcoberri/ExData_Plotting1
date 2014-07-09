@@ -1,4 +1,4 @@
-
+Sys.setlocale("LC_TIME", 'en_US.UTF-8')
 
 download_file<-function(folder, file_result){
 

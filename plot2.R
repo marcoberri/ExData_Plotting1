@@ -1,3 +1,5 @@
+Sys.setlocale("LC_TIME", 'en_US.UTF-8')
+
 download_file<-function(folder, file_result){
 
 	if(!file.exists(
@@ -17,8 +19,6 @@ download_file<-function(folder, file_result){
 		printUser("File Exists")	
 	}
 }
-
-Sys.setlocale("LC_TIME", 'en_US.UTF-8')
 
 download_file("DS","/household_power_consumption.txt")
 
